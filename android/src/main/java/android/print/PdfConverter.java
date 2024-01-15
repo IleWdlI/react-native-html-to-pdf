@@ -62,7 +62,7 @@ public class PdfConverter implements Runnable {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
                     throw new RuntimeException("call requires API level 19");
                 else {
                     PrintDocumentAdapter documentAdapter = mWebView.createPrintDocumentAdapter();
@@ -114,6 +114,7 @@ public class PdfConverter implements Runnable {
         settings.setTextZoom(100);
         settings.setDefaultTextEncodingName("utf-8");
         settings.setAllowFileAccess(true);
+        settings.setJavaScriptEnabled(true);
         mWebView.loadDataWithBaseURL(mBaseURL, mHtmlString, "text/HTML", "utf-8", null);
     }
 
